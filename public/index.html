@@ -1,23 +1,97 @@
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Beep Boop</title>
 
-<h1>Robot IO</h1>
+        <!-- le styles -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+    </head>
 
-<button id="beep">Beep</button>
-<button id="boop">Boop</button>
-<ul id="chat"></ul>
+    <body class="container"> 
+        <div id="main"></div>
+    </body>
 
-<script>
-  var socket = io();
-  $('#beep').click(function(){
-    socket.emit('chat message','Beep!');
-    return false;
-  });
-  $('#boop').click(function(){
-    socket.emit('chat message','Boop!');
-    return false;
-  });
-  socket.on('chat message', function(msg){
-    $('#chat').append($('<li>').text(msg));
-  });
-</script>
+    <!-- js -->
+    <script src="https://fb.me/react-0.14.7.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+
+    <script type="text/babel">
+
+  
+        var App = React.createClass({
+			getInitialState: function() {
+				return {
+					messageText: 'nothing yet...',
+					receivedList: []
+				}
+			},
+			beepButtonPress: function() {
+                socket.emit('chat message','Beep!');
+				this.setState({
+                    messageText: 'BEEP'
+                });
+            },
+			boopButtonPress: function() {
+                socket.emit('chat message','Boop!');
+				this.setState({
+                    messageText: 'BOOP'
+                });
+            },
+			resetButtonPress: function() {
+                console.log(event);
+				this.setState({
+                    messageText: '----------'
+                });
+            },
+			render: function() {
+				console.log(socket);
+				return(
+					<div>
+						<h1>Welcome to BeepBoop!</h1>
+						<hr />
+						<h2>Send Message</h2>
+						<div>You said: {this.state.messageText}</div>
+						<button type="button" onClick={this.beepButtonPress}>Beep!</button>
+						<button type="button" onClick={this.boopButtonPress}>Boop!</button>
+						<button type="button" onClick={this.resetButtonPress}>Reset</button>
+						<hr />
+						<h2>Messages received</h2>
+						<div>{this.state.receivedList}</div>
+					</div>
+				);
+			}
+		});
+
+		
+		
+		
+		var Beep = React.createClass({
+			
+			handleClick: function() {
+				//TODO add something
+			},
+			render: function() {
+				return(
+					<button type="button" onClick={this.handleClick}>Beep!</button>
+				);
+			}
+		});
+
+		var Boop = React.createClass({
+			render: function() {
+				return(
+					<button type="button">Boop!</button>
+				);
+			}
+		});
+
+        ReactDOM.render(
+            <App title='Beep Boop' />,
+            document.getElementById('main')
+        );
+    </script>
+</html>
+ 
