@@ -48,25 +48,26 @@
             },
 			render: function() {
 				console.log(this.props.socket);
+                var style = {
+                    fontSize: '100px',
+                    fontWeight: 'bold'
+                }
 				return(
 					<div>
 						<h1>Welcome to BeepBoop!</h1>
 						<hr />
 						<h2>Send Message</h2>
 						<div>You said: {this.state.messageText}</div>
-						<button type="button" onClick={this.beepButtonPress}>Beep!</button>
-						<button type="button" onClick={this.boopButtonPress}>Boop!</button>
-						<button type="button" onClick={this.resetButtonPress}>Reset</button>
+						<button type="button" className="btn btn-primary" onClick={this.beepButtonPress}>Beep!</button>
+						<button type="button" className="btn btn-primary" onClick={this.boopButtonPress}>Boop!</button>
+						<button type="button" className="btn btn-danger" onClick={this.resetButtonPress}>Reset</button>
 						<hr />
-						<h2>Messages received</h2>
-						<div>{this.state.receivedList}</div>
+						<h2>Message received</h2>
+						<div style={style}>{this.props.msg}</div>
 					</div>
 				);
 			}
 		});
-
-
-
 
 		var Beep = React.createClass({
 
@@ -88,9 +89,20 @@
 			}
 		});
 
+        var socket = io();
+
         ReactDOM.render(
-            <App title='Beep Boop' socket={io()} />,
+            <App title='Beep Boop' socket={socket} />,
             document.getElementById('main')
         );
+
+        socket.on('chat message', function(msg){
+            ReactDOM.render(
+                <App title='Beep Boop' socket={socket} msg={msg} />,
+                document.getElementById('main')
+            );
+        });
+
+
     </script>
 </html>
