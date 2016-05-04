@@ -1,5 +1,5 @@
 {
-  "name": "robot-io",
+  "name": "beep-boop",
   "version": "1.0.0",
   "description": "Robot Chat App",
   "main": "index.js",
@@ -9,6 +9,7 @@
   "author": "javascript101",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "socket.io": "^1.4.6"
   }
 }
