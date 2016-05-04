@@ -8,7 +8,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
     </head>
 
-    <body class="container"> 
+    <body class="container">
         <div id="main"></div>
     </body>
 
@@ -20,7 +20,7 @@
 
     <script type="text/babel">
 
-  
+
         var App = React.createClass({
 			getInitialState: function() {
 				return {
@@ -29,13 +29,13 @@
 				}
 			},
 			beepButtonPress: function() {
-                socket.emit('chat message','Beep!');
+                this.props.socket.emit('chat message','Beep!');
 				this.setState({
                     messageText: 'BEEP'
                 });
             },
 			boopButtonPress: function() {
-                socket.emit('chat message','Boop!');
+                this.props.socket.emit('chat message','Boop!');
 				this.setState({
                     messageText: 'BOOP'
                 });
@@ -47,7 +47,7 @@
                 });
             },
 			render: function() {
-				console.log(socket);
+				console.log(this.props.socket);
 				return(
 					<div>
 						<h1>Welcome to BeepBoop!</h1>
@@ -65,11 +65,11 @@
 			}
 		});
 
-		
-		
-		
+
+
+
 		var Beep = React.createClass({
-			
+
 			handleClick: function() {
 				//TODO add something
 			},
@@ -89,9 +89,8 @@
 		});
 
         ReactDOM.render(
-            <App title='Beep Boop' />,
+            <App title='Beep Boop' socket={io()} />,
             document.getElementById('main')
         );
     </script>
 </html>
- 
