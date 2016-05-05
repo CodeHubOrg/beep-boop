@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>Beep Boop</title>
 
-        <!-- le styles -->
+        <!-- Bootstrap for styling -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
     </head>
 
@@ -12,7 +12,7 @@
         <div id="main"></div>
     </body>
 
-    <!-- js -->
+    <!-- js libraries inc. React and Socket.io -->
     <script src="https://fb.me/react-0.14.7.js"></script>
     <script src="https://fb.me/react-dom-0.14.7.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
@@ -24,20 +24,20 @@
         var App = React.createClass({
 			getInitialState: function() {
 				return {
-					messageText: 'nothing yet...',
+					messageText: '----------',
 					receivedList: []
 				}
 			},
 			beepButtonPress: function() {
                 this.props.socket.emit('chat message','Beep!');
 				this.setState({
-                    messageText: 'BEEP'
+                    messageText: 'Beep!'
                 });
             },
 			boopButtonPress: function() {
                 this.props.socket.emit('chat message','Boop!');
 				this.setState({
-                    messageText: 'BOOP'
+                    messageText: 'Boop!'
                 });
             },
 			resetButtonPress: function() {
@@ -56,35 +56,15 @@
 					<div>
 						<h1>Welcome to BeepBoop!</h1>
 						<hr />
-						<h2>Send Message</h2>
-						<div>You said: {this.state.messageText}</div>
+						<h2>Send A Message</h2>
 						<button type="button" className="btn btn-primary" onClick={this.beepButtonPress}>Beep!</button>
 						<button type="button" className="btn btn-primary" onClick={this.boopButtonPress}>Boop!</button>
 						<button type="button" className="btn btn-danger" onClick={this.resetButtonPress}>Reset</button>
+						<div>You sent a: {this.state.messageText}</div>
 						<hr />
-						<h2>Message received</h2>
+						<h2>Last Message Received</h2>
 						<div style={style}>{this.props.msg}</div>
 					</div>
-				);
-			}
-		});
-
-		var Beep = React.createClass({
-
-			handleClick: function() {
-				//TODO add something
-			},
-			render: function() {
-				return(
-					<button type="button" onClick={this.handleClick}>Beep!</button>
-				);
-			}
-		});
-
-		var Boop = React.createClass({
-			render: function() {
-				return(
-					<button type="button">Boop!</button>
 				);
 			}
 		});
