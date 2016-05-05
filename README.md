@@ -1,3 +1,6 @@
+#Beep Boop
+
+##Installation
 Npm install
 
 Run the server app with:
@@ -12,4 +15,8 @@ Send beeps or boops!
 
 Tip: Kill the server with CTRL + C
 
-- [ ] a task list item
+#Todo
+- [x] add todo list
+- [ ] refactor index.html
+- [ ] add redux
+- [ ] a sounds
