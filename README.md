@@ -19,4 +19,4 @@ Tip: Kill the server with CTRL + C
 - [x] add todo list
 - [ ] refactor index.html
 - [ ] add redux
-- [ ] a sounds
+- [ ] add sounds
