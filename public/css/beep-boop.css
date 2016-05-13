@@ -1,0 +1,189 @@
+/* general */
+    
+
+    @font-face {
+      font-family: 'Nova Square';
+      font-style: normal;
+      font-weight: 400;
+      src: local("Nova Square"), local("NovaSquare"), url(http://themes.googleusercontent.com/static/fonts/novasquare/v5/YsNHj2Yx5KzHzIjNe-czdIbN6UDyHWBl620a-IRfuBk.woff) format("woff");
+    }
+
+    body {
+        background: #444;
+    }   
+    @media (min-width: 520px){
+        body {
+            background: white
+        }
+    }
+
+    .push-down {
+        margin-bottom: 1.5em;
+    }
+
+    .bg-white {
+        background: white
+    }
+
+    .segment {
+        width: 100%;
+    }
+    .segment.padded {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    @media (min-width: 870px){
+        .segment.padded-large{
+            padding-left: 17%;
+            padding-right: 17%;
+        }
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .font-standard {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    .font-standard.padded {
+        padding: 1em;
+    }
+
+    li {
+        list-style: none
+    }
+
+    /* layout */
+
+    .wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: #444;
+        min-height: 500px;
+        border-radius: 10px;
+        padding: 0.5em 1em;       
+    }
+
+  
+    @media (min-width: 768px) {
+        .wrapper {
+         width: 80%
+         min-height: 700px;
+         padding: 2em 3em 1em 3em;
+        } 
+    }
+
+    .display-screen {
+        min-height: 150px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .welcome, .message_received {
+        font-family: 'Nova Square', Helvetica, sans-serif;
+    }
+    .welcome {
+        color: #c8a2c8;
+        font-size: 50.5px;
+    }
+    .message-received {
+        color: #551f55;
+        font-size: 101px;
+        font-weight: bold;
+    }
+
+    @media (min-height: 400px) {
+        .display-screen {
+            min-height: 220px;
+        }
+    }
+
+    @media (min-height: 700px) {
+        .display-screen {
+        min-height: 500px;
+        }             
+    }
+
+    .beep-booped {
+        border-radius: 4px;
+        font-family: 'Nova Square', Helvetica, sans-serif;
+        font-size: 14px; 
+        letter-spacing: 1px;
+        line-height: 1;
+    }
+
+    @media (min-width: 768px) {
+        .beep-booped {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+    }
+
+    .wrapper-buttons {
+        width: 100%;
+    }
+
+    .button {
+        border: none;
+        cursor: pointer;
+        color: white;
+        width: 165px;
+        border-radius: 4px;
+        font: bold 27px Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        line-height: 1;
+        padding: 18.5625px 40.5px;
+        transition: opacity 0.1s ease 0s, background-color 0.1s ease 0s, color 0.1s ease 0s, box-shadow 0.1s ease 0s, background 0.1s ease 0s;
+    }
+
+    .pink {
+        background: #c71f7e;
+    }
+
+    .ui.pink.button:hover {
+        background-color: #e61a8d;
+    }
+
+    .ui.pink.button:focus {
+        background-color: #e10f85;
+    }
+    .ui.pink.button:active {
+        background-color: #c71f7e;
+    }
+
+    .green {
+        background: #21ba45;
+    }
+
+    .ui.green.button:hover {
+        background-color: #16ab39;
+    }
+
+    .ui.green.button:focus {
+        background-color: #0ea432;
+    }
+
+    .ui.green.button:active {
+        background-color: #198f35;
+    }
+
+
+    .gray {
+        background: #999;
+    }
+
+    .ui.gray.button:hover {
+        background-color: #777;
+    }
+
+    .ui.gray.button:focus {
+        background-color: #787878;
+    }
+
+    .ui.gray.button:active {
+        background-color: #858585;
+    }

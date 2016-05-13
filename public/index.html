@@ -6,175 +6,8 @@
 
         <link rel="stylesheet" href="/css/normalize.css">
         <link rel="stylesheet" href="/css/grid.css">
-        <style>
-
-    /* general */
-    
-
-    @font-face {
-      font-family: 'Nova Square';
-      font-style: normal;
-      font-weight: 400;
-      src: local("Nova Square"), local("NovaSquare"), url(http://themes.googleusercontent.com/static/fonts/novasquare/v5/YsNHj2Yx5KzHzIjNe-czdIbN6UDyHWBl620a-IRfuBk.woff) format("woff");
-    }
-
-    body {
-        background: #444;
-    }   
-    @media (min-width: 520px){
-        body {
-            background: white
-        }
-    }
-
-    .push-down {
-        margin-bottom: 1.5em;
-    }
-
-    .bg-white {
-        background: white
-    }
-
-    .segment {
-        width: 100%;
-    }
-    .segment.padded {
-        padding-left: 17%;
-        padding-right: 17%;
-    }
-
-    @media (min-width: 870px){
-        .segment.padded-large{
-            padding-left: 21%;
-            padding-right: 21%;
-        }
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .font-standard {
-        font-size: 16px;
-        line-height: 1.5;
-    }
-    .font-standard.padded {
-        padding: 1em;
-    }
-
-    li {
-        list-style: none
-    }
-
-    /* layout */
-
-    .wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: #444;
-        min-height: 500px;
-        border-radius: 10px;
-        padding: 2em 1em;
-       
-    }
-
-    @media (min-width: 520px) {
-        .wrapper {
-            width: 80%;
-
-        }
-    }
-
-    @media (min-width: 768px) {
-        .wrapper {
-         min-height: 700px;
-         padding: 2em 3em 1em 3em;
-        } 
-    }
-
-    .display-screen {
-        min-height: 300px;
-        border-radius: 4px;
-    }
-
-    @media (min-width: 768px) {
-        .display-screen {
-        min-height: 500px;
-        }             
-    }
-
-    .beep-booped {
-        border-radius: 4px;
-        font-family: 'Nova Square', Helvetica, sans-serif;
-        font-size: 18px; 
-        letter-spacing: 1px;
-    }
-
-    .wrapper-buttons {
-        width: 100%;
-    }
-
-    .button {
-        border: none;
-        cursor: pointer;
-        color: white;
-        width: 165px;
-        border-radius: 4px;
-        font: bold 27px Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        line-height: 1;
-        padding: 18.5625px 40.5px;
-        transition: opacity 0.1s ease 0s, background-color 0.1s ease 0s, color 0.1s ease 0s, box-shadow 0.1s ease 0s, background 0.1s ease 0s;
-    }
-
-    .pink {
-        background: #c71f7e;
-    }
-
-    .ui.pink.button:hover {
-        background-color: #e61a8d;
-    }
-
-    .ui.pink.button:focus {
-        background-color: #e10f85;
-    }
-    .ui.pink.button:active {
-        background-color: #c71f7e;
-    }
-
-    .green {
-        background: #21ba45;
-    }
-
-    .ui.green.button:hover {
-        background-color: #16ab39;
-    }
-
-    .ui.green.button:focus {
-        background-color: #0ea432;
-    }
-
-    .ui.green.button:active {
-        background-color: #198f35;
-    }
-
-
-    .gray {
-        background: #999;
-    }
-
-    .ui.gray.button:hover {
-        background-color: #777;
-    }
-
-    .ui.gray.button:focus {
-        background-color: #787878;
-    }
-
-    .ui.gray.button:active {
-        background-color: #858585;
-    }
-
-    </style>
+        <link rel="stylesheet" href="/css/beep-boop.css">
+            
 
     </head>
 
@@ -192,9 +25,11 @@
 
         var Display = React.createClass({
             render: function(){
+                console.log(this.props);
+                var message_class = (this.props.received) ? 'message-received' : 'welcome';
                 return (
                 <div className="display-screen center bg-white push-down">
-                    <p>{this.props.message}</p>
+                    <p className={message_class}>{this.props.message}</p>
                 </div>
                 );
             }
@@ -202,11 +37,11 @@
 
         var Button = React.createClass({
             handleButtonPress: function(){
-                if(this.props.text != 'Reset'){
+                if(this.props.button.text != 'Reset'){
                     var message = this.props.button.text;
                     this.props.socket.emit('chat message', message);
                     this.props.onUpdate(message);
-                }
+                } 
             },
             render: function() {
                 var grid = "grid__cell center aligned " + this.props.button.grid;
@@ -231,25 +66,22 @@
                 this.setState({messageSent: message});
             },
 			render: function() {
-				console.log(this.props.socket);
-                var socket = this.props.socket;
-                var style = {
-                    fontSize: '100px',
-                    fontWeight: 'bold'
-                }
+                var socket = this.props.socket;     
                 var message = (this.props.msg) ? this.props.msg : 'Welcome to Beep Boop. Please send a message.';
+                var received = (this.props.msg) ? true : false;
+                console.log("this is the state", this.state);
 				return(
                     <div className="wrapper">
-                        <Display message={message} />
+                        <Display message={message} received={received} />
                         <div className="segment padded"> 
                             <div className="beep-booped center font-standard padded bg-white push-down">
-                                {this.state.messageSent}       
+                                {this.state.messageSent}      
                             </div>
                         </div> 
                         <div className="segment padded-large"> 
-                            <Button button={{colour: "pink", text: "Beep", grid:"u-1/2--medium u-1/3--largest" }} socket={socket} onUpdate={this.handleButton} />
-                            <Button button={{colour: "green", text: "Boop", grid:"u-1/2--medium u-1/3--largest" }} socket={socket} onUpdate={this.handleButton} />
-                            <Button button={{colour: "gray", text: "Reset", grid:"u-1/3--largest" }} socket={socket} onUpdate={this.handleButton} />
+                            <Button button={{colour: "pink", text: "Beep", grid:"u-1/2--medium u-1/3--large" }} socket={socket} onUpdate={this.handleButton} />
+                            <Button button={{colour: "green", text: "Boop", grid:"u-1/2--medium u-1/3--large" }} socket={socket} onUpdate={this.handleButton} />
+                            <Button button={{colour: "gray", text: "Reset", grid:"u-1/3--large" }} socket={socket} onUpdate={this.handleButton} />
                         </div>
                     </div>
 				);
