@@ -46,7 +46,7 @@
             },
             render: function() {
                 var grid = "grid__cell center aligned " + this.props.button.grid;
-                var selectors = "ui button massive push-down " + this.props.button.colour;
+                var selectors = "ui button massive push-down-half " + this.props.button.colour;
                 return(
                     <div className={grid}>
                         <button className={selectors} onClick={this.handleButtonPress}>{this.props.button.text}</button>

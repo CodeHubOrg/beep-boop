@@ -21,6 +21,10 @@
         margin-bottom: 1.5em;
     }
 
+    .push-down-half {
+        margin-bottom: 0.75em;
+    }
+
     .bg-white {
         background: white
     }
@@ -64,7 +68,7 @@
         background: #444;
         min-height: 500px;
         border-radius: 10px;
-        padding: 0.5em 1em;       
+        padding: 1em;       
     }
 
   
@@ -77,7 +81,6 @@
     }
 
     .display-screen {
-        min-height: 150px;
         border-radius: 4px;
         display: flex;
         align-items: center;
@@ -89,23 +92,29 @@
     }
     .welcome {
         color: #c8a2c8;
-        font-size: 50.5px;
+        font-size: 25.25px;
     }
     .message-received {
         color: #551f55;
-        font-size: 101px;
+        font-size: 50.5px;
         font-weight: bold;
     }
 
     @media (min-height: 400px) {
         .display-screen {
-            min-height: 220px;
+          
         }
     }
 
     @media (min-height: 700px) {
+        .welcome {
+            font-size: 50.5px
+        }
         .display-screen {
-        min-height: 500px;
+            min-height: 500px;
+        }
+        .message-received {
+            font-size: 101px;
         }             
     }
 
@@ -125,7 +134,7 @@
     }
 
     .wrapper-buttons {
-        width: 100%;
+        width: 100%;        
     }
 
     .button {
