@@ -79,12 +79,10 @@ html {
 /*
     Gutterless grids have all the properties of regular grids, minus any spacing.
 */
-.grid--full {
-    margin-left: 0;
 
-    > .grid__cell {
-        padding-left: 0;
-    }
+
+.grid--full > .grid__cell {
+    padding-left: 0;
 }
 
 /*
@@ -93,22 +91,23 @@ html {
 */
 .grid--rev {
     direction: rtl;
-    text-align: left;
+    text-align: left;   
+}
 
-    > .grid__cell {
-        direction: ltr;
-        text-align: left;
-    }
+.grid--rev > .grid__cell {
+    direction: ltr;
+    text-align: left;
 }
 
 .grid--featured, .grid--contact {
     margin-left: -20px;
+}
 
-    > .grid__cell {
-        position: relative; 
-        padding-left: 20px;
-        margin-bottom: 20px;
-    }
+
+.grid--featured > .grid__cell, .grid--contact > .grid__cell {
+    position: relative; 
+    padding-left: 20px;
+    margin-bottom: 20px;
 }
 
 /* 
